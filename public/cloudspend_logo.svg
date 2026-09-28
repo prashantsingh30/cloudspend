@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Cloud Gradient -->
+    <linearGradient id="cloudMain" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="35%" stop-color="#2563EB" />
+      <stop offset="75%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+
+    <!-- Cloud Top Ambient Light -->
+    <linearGradient id="cloudTopLight" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Bottom Left Swoop Ribbon -->
+    <linearGradient id="swoopGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="40%" stop-color="#0EA5E9" />
+      <stop offset="85%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+
+    <!-- Wallet Body Gradient -->
+    <linearGradient id="walletBody" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F1F5F9" />
+      <stop offset="100%" stop-color="#DCE5F5" />
+    </linearGradient>
+
+    <!-- Wallet Inner Shadow / Fold Crease -->
+    <linearGradient id="walletFold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Bar Chart Pillar Gradient -->
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#D3E1FA" />
+    </linearGradient>
+
+    <!-- Clasp Strap Gradient -->
+    <linearGradient id="strapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="45%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1E40AF" />
+    </linearGradient>
+
+    <!-- Snap Button Metallic Gradient -->
+    <radialGradient id="buttonGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="45%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </radialGradient>
+
+    <!-- Soft Drop Shadows -->
+    <filter id="softShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#1E1B4B" flood-opacity="0.35" />
+    </filter>
+
+    <filter id="walletShadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#0F172A" flood-opacity="0.25" />
+    </filter>
+
+    <filter id="barShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#1E293B" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- 1. Background Cloud Shape with Rich Volumetric Lobes -->
+  <g filter="url(#softShadow)">
+    <!-- Base Cloud Silhouette -->
+    <path
+      d="M175 140
+         C145 140 120 162 110 190
+         C70 195 40 230 40 275
+         C40 325 80 365 130 365
+         C150 365 170 358 185 348
+         C215 395 270 425 330 425
+         C415 425 475 365 475 285
+         C475 220 430 165 365 155
+         C345 110 295 75 240 75
+         C198 75 162 100 148 135
+         C156 138 166 140 175 140 Z"
+      fill="url(#cloudMain)"
+    />
+
+    <!-- Cloud Top Ambient Sheen Overlay -->
+    <path
+      d="M240 75
+         C295 75 345 110 365 155
+         C405 162 440 188 458 225
+         C425 180 375 150 320 145
+         C275 140 220 155 175 190
+         C185 160 210 140 240 75 Z"
+      fill="url(#cloudTopLight)"
+      opacity="0.65"
+    />
+
+    <!-- Deep 3D Shadow on Right Lobe of Cloud -->
+    <path
+      d="M365 155
+         C430 165 475 220 475 285
+         C475 365 415 425 330 425
+         C380 405 420 355 420 295
+         C420 235 385 185 340 165
+         C348 161 357 158 365 155 Z"
+      fill="#4338CA"
+      opacity="0.45"
+    />
+  </g>
+
+  <!-- 2. Financial Growth Bar Chart Pillars Rising from Inside Wallet -->
+  <g filter="url(#barShadow)">
+    <!-- Bar 1 (Left - Shortest) -->
+    <rect x="196" y="180" width="40" height="90" rx="10" fill="url(#barGrad)" />
+    <!-- Bar 1 Top Highlight -->
+    <rect x="198" y="182" width="36" height="12" rx="6" fill="#FFFFFF" opacity="0.8" />
+
+    <!-- Bar 2 (Middle - Medium) -->
+    <rect x="250" y="146" width="42" height="124" rx="10" fill="url(#barGrad)" />
+    <!-- Bar 2 Top Highlight -->
+    <rect x="252" y="148" width="38" height="12" rx="6" fill="#FFFFFF" opacity="0.8" />
+
+    <!-- Bar 3 (Right - Tallest) -->
+    <rect x="306" y="112" width="44" height="158" rx="11" fill="url(#barGrad)" />
+    <!-- Bar 3 Top Highlight -->
+    <rect x="308" y="114" width="40" height="12" rx="6" fill="#FFFFFF" opacity="0.8" />
+  </g>
+
+  <!-- 3. Clean White 3D Wallet Front -->
+  <g filter="url(#walletShadow)">
+    <!-- Back Lip of Wallet Opening -->
+    <path
+      d="M165 240
+         C165 225 180 215 200 215
+         L370 215
+         C385 215 395 225 395 240
+         L395 255
+         L165 255 Z"
+      fill="#CBD5E1"
+    />
+
+    <!-- Main Front Wallet Shell -->
+    <path
+      d="M152 245
+         C145 255 142 270 142 290
+         L142 345
+         C142 375 165 395 195 395
+         L365 395
+         C395 395 415 375 415 345
+         L415 295
+         C415 265 395 245 365 245
+         L195 245
+         C175 245 160 245 152 245 Z"
+      fill="url(#walletBody)"
+    />
+
+    <!-- Wallet Top Specular Lip -->
+    <path
+      d="M170 246
+         L365 246
+         C388 246 405 260 410 280
+         C404 265 388 253 365 253
+         L195 253
+         C178 253 166 262 160 274
+         C163 258 175 246 170 246 Z"
+      fill="#FFFFFF"
+      opacity="0.9"
+    />
+
+    <!-- Wallet Left Smooth Bevel -->
+    <path
+      d="M142 290
+         C142 270 148 255 160 248
+         C150 258 146 274 146 295
+         L146 345
+         C146 370 165 390 190 392
+         C165 390 142 370 142 345 Z"
+      fill="#CBD5E1"
+      opacity="0.6"
+    />
+  </g>
+
+  <!-- 4. Leather Clasp Strap & Metallic Snap Button -->
+  <g>
+    <!-- Clasp Strap with Deep Indigo Back Shadow -->
+    <path
+      d="M380 290
+         L425 290
+         C440 290 450 302 450 318
+         L450 332
+         C450 348 440 360 425 360
+         L380 360 Z"
+      fill="#1E3A8A"
+      opacity="0.35"
+    />
+
+    <!-- Clasp Strap Outer Curve -->
+    <path
+      d="M350 295
+         L415 295
+         C435 295 448 308 448 328
+         C448 348 435 360 415 360
+         L350 360
+         C335 360 325 348 325 328
+         C325 308 335 295 350 295 Z"
+      fill="url(#strapGrad)"
+      filter="url(#barShadow)"
+    />
+
+    <!-- Clasp Strap Upper Highlight Rim -->
+    <path
+      d="M355 297
+         L412 297
+         C428 297 442 308 444 322
+         C441 310 428 301 412 301
+         L355 301
+         C340 301 330 310 328 322
+         C330 308 340 297 355 297 Z"
+      fill="#93C5FD"
+      opacity="0.6"
+    />
+
+    <!-- Snap Button Ring Rim -->
+    <circle cx="368" cy="328" r="19" fill="#1E3A8A" opacity="0.3" />
+    <circle cx="368" cy="328" r="17" fill="#CBD5E1" />
+
+    <!-- Snap Button Outer Metallic Dome -->
+    <circle cx="367" cy="327" r="15" fill="url(#buttonGrad)" />
+
+    <!-- Snap Button Inner Specular Glimmer -->
+    <circle cx="363" cy="323" r="5" fill="#FFFFFF" opacity="0.9" />
+  </g>
+
+  <!-- 5. Dynamic Cyan-Blue Crescent Ribbon Swoop around Lower Left -->
+  <path
+    d="M100 270
+       C90 320 115 370 160 405
+       C210 445 285 455 345 440
+       C290 445 220 425 175 385
+       C135 350 115 305 125 255
+       C115 260 106 265 100 270 Z"
+    fill="url(#swoopGrad)"
+    opacity="0.95"
+  />
+
+  <!-- Extra High-Glow Inner Accent on Swoop -->
+  <path
+    d="M125 255
+       C118 295 135 340 170 375
+       C215 420 280 435 335 430
+       C275 425 220 405 185 365
+       C150 325 136 285 142 245
+       C135 248 129 252 125 255 Z"
+    fill="#38BDF8"
+    opacity="0.75"
+  />
+</svg>

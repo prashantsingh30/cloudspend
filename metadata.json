@@ -1,0 +1,6 @@
+{
+  "name": "CloudSpend — Smart Expense Management & Budget Tracking",
+  "description": "Take control of your money, one expense at a time. Record expenses, manage monthly budgets, analyze financial habits, and generate PDF expense reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Light Theme Tokens */
+    --bg-page: #F7F8FC;
+    --bg-surface: #FFFFFF;
+    --bg-elevated: #F1F4F9;
+    --text-primary: #151A2D;
+    --text-secondary: #64748B;
+    --border-subtle: #E7EAF2;
+
+    /* Brand Tokens */
+    --color-primary: #5145E5;
+    --color-primary-hover: #4338CA;
+    --color-secondary: #10172A;
+    --color-accent: #A5A0FF;
+    --color-positive: #10B981;
+    --color-warning: #F59E0B;
+    --color-error: #F43F5E;
+
+    font-family: var(--font-body);
+    color-scheme: light;
+  }
+
+  .dark {
+    /* Dark Theme Tokens */
+    --bg-page: #0B1020;
+    --bg-surface: #111A2E;
+    --bg-elevated: #17223A;
+    --text-primary: #F4F6FF;
+    --text-secondary: #A3AEC7;
+    --border-subtle: #26334D;
+
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.font-mono-nums {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
