@@ -10,7 +10,7 @@ interface AuthContextType {
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string, currency: CurrencyCode) => Promise<void>;
-  googleLogin: (credential: string) => Promise<void>;
+  googleLogin: (payload: { credential?: string; accessToken?: string } | string) => Promise<void>;
   logout: () => void;
   updateProfile: (name: string, currency: CurrencyCode, dateFormat?: string, themePreference?: string) => Promise<void>;
   deleteAccount: () => Promise<void>;
@@ -82,10 +82,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const googleLogin = async (credential: string) => {
+  const googleLogin = async (payload: { credential?: string; accessToken?: string } | string) => {
     setIsLoading(true);
     try {
-      const res = await api.googleLogin(credential);
+      const res = await api.googleLogin(payload);
       setUser(res.user);
       setTokenState(res.token);
       showToast(`Signed in with Google as ${res.user.name}.`, 'success');

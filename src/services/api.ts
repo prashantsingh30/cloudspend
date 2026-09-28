@@ -95,10 +95,11 @@ export const api = {
     return data;
   },
 
-  async googleLogin(credential: string): Promise<{ token: string; user: User }> {
+  async googleLogin(payload: { credential?: string; accessToken?: string } | string): Promise<{ token: string; user: User }> {
+    const body = typeof payload === 'string' ? { credential: payload } : payload;
     const data = await request<{ token: string; user: User }>('/api/auth/google', {
       method: 'POST',
-      body: JSON.stringify({ credential }),
+      body: JSON.stringify(body),
     });
     if (data.token) setToken(data.token);
     if (data.user) setStoredUser(data.user);

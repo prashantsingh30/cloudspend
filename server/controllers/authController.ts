@@ -197,40 +197,57 @@ export const login = async (req: AuthenticatedRequest, res: Response): Promise<v
 
 export const googleAuth = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    const { credential } = req.body;
-    if (!credential) {
+    const { credential, accessToken } = req.body;
+    if (!credential && !accessToken) {
       res.status(400).json({
-        message: 'Google credential token is required. Ensure Google OAuth Client ID is configured in .env.',
+        message: 'Google credential token or access token is required.',
       });
       return;
     }
 
     let payload: any = null;
-    try {
-      const ticket = await oauth2Client.verifyIdToken({
-        idToken: credential,
-        audience: googleClientId && googleClientId !== 'YOUR_GOOGLE_CLIENT_ID' ? googleClientId : undefined,
-      });
-      payload = ticket.getPayload();
-    } catch (verifyErr: any) {
-      console.warn('Google verifyIdToken note:', verifyErr?.message);
-      // Fallback decode for development/testing if token format is valid JWT
-      const parts = credential.split('.');
-      if (parts.length >= 2) {
-        try {
-          const raw = Buffer.from(parts[1], 'base64').toString('utf-8');
-          payload = JSON.parse(raw);
-        } catch {
+
+    if (accessToken) {
+      try {
+        const userInfoRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        if (!userInfoRes.ok) {
+          res.status(401).json({ message: 'Failed to verify Google access token with Google API.' });
+          return;
+        }
+        payload = await userInfoRes.json();
+      } catch (err: any) {
+        res.status(401).json({ message: `Google userinfo verification failed: ${err.message}` });
+        return;
+      }
+    } else if (credential) {
+      try {
+        const ticket = await oauth2Client.verifyIdToken({
+          idToken: credential,
+          audience: googleClientId && googleClientId !== 'YOUR_GOOGLE_CLIENT_ID' ? googleClientId : undefined,
+        });
+        payload = ticket.getPayload();
+      } catch (verifyErr: any) {
+        console.warn('Google verifyIdToken note:', verifyErr?.message);
+        // Fallback decode for development/testing if token format is valid JWT
+        const parts = credential.split('.');
+        if (parts.length >= 2) {
+          try {
+            const raw = Buffer.from(parts[1], 'base64').toString('utf-8');
+            payload = JSON.parse(raw);
+          } catch {
+            res.status(401).json({
+              message: `Google token verification failed: ${verifyErr?.message || 'Invalid Google credential token.'}`,
+            });
+            return;
+          }
+        } else {
           res.status(401).json({
             message: `Google token verification failed: ${verifyErr?.message || 'Invalid Google credential token.'}`,
           });
           return;
         }
-      } else {
-        res.status(401).json({
-          message: `Google token verification failed: ${verifyErr?.message || 'Invalid Google credential token.'}`,
-        });
-        return;
       }
     }
 

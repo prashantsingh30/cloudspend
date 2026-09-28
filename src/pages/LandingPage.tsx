@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { BrandLogo } from '../components/common/BrandLogo';
+import { ScrollToTopButton } from '../components/common/ScrollToTopButton';
 
 export const LandingPage: React.FC = () => {
   const location = useLocation();
@@ -77,6 +78,7 @@ export const LandingPage: React.FC = () => {
       </main>
 
       <Footer />
+      <ScrollToTopButton />
     </div>
   );
 };
