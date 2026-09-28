@@ -47,28 +47,32 @@ export const LandingPage: React.FC = () => {
         <FaqSection />
 
         {/* Final CTA Banner */}
-        <section className="py-20 bg-linear-to-br from-[#5145E5] to-[#3730A3] text-white text-center">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-center mb-4">
-              <BrandLogo variant="icon-only" size="lg" />
+        <section className="py-24 relative overflow-hidden bg-gradient-to-b from-indigo-950/40 via-[#070B14] to-[#070B14] text-white text-center border-t border-indigo-500/20">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-indigo-500/15 blur-[140px] rounded-full pointer-events-none -z-10" />
+
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex justify-center mb-5">
+              <div className="p-3 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 backdrop-blur-xl shadow-lg">
+                <BrandLogo variant="icon-only" size="lg" />
+              </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold tracking-tight">
-              Start Managing Your Expenses with Clarity
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight max-w-2xl mx-auto leading-tight">
+              Start Managing Your Expenses with Absolute Clarity
             </h2>
-            <p className="mt-4 text-indigo-100 text-sm sm:text-base max-w-xl mx-auto">
-              No clutter. No third-party data tracking. Just clear financial insights and monthly budget confidence.
+            <p className="mt-4 text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+              No clutter. No third-party data tracking. Just clear financial insights and real-time monthly budget confidence.
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
               <Link
                 to="/register"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold text-[#5145E5] bg-white hover:bg-slate-50 rounded-xl shadow-lg transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-full shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
               >
                 <span>Get Started — It's Free</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/login"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white hover:bg-white/10 border border-white/20 rounded-xl transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium text-slate-200 hover:text-white glass-card hover:bg-white/10 border border-white/15 rounded-full transition-all duration-200 active:scale-[0.98]"
               >
                 Sign In to Existing Account
               </Link>
