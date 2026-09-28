@@ -112,41 +112,100 @@ export const AnalyticsPage: React.FC = () => {
         <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full space-y-6">
           {isLoading ? (
             <div className="space-y-4">
-              <div className="h-64 bg-[#E7EAF2] dark:bg-[#17223A] rounded-2xl animate-pulse" />
-              <div className="h-64 bg-[#E7EAF2] dark:bg-[#17223A] rounded-2xl animate-pulse" />
+              <div className="h-28 glass-card rounded-2xl animate-pulse" />
+              <div className="h-80 glass-card rounded-2xl animate-pulse" />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="h-80 glass-card rounded-2xl animate-pulse" />
+                <div className="h-80 glass-card rounded-2xl animate-pulse" />
+              </div>
             </div>
           ) : (
             <>
-              {/* Daily Timeline Trend */}
-              <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-[#5145E5] dark:text-[#A5A0FF]" />
-                  <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
-                    Daily Spending Curve (Current Month)
-                  </h3>
+              {/* Analytics Metric Highlights Bar */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="glass-card rounded-2xl p-5 border border-slate-200/80 dark:border-white/10 shadow-sm relative overflow-hidden">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Analyzed</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30">Current Cycle</span>
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tabular-nums font-mono-nums mt-2">
+                    {formatCurrency(summary?.totalMonthExpenses || 0, user?.currency || 'USD')}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    {expenses.length} transaction entries aggregated
+                  </p>
                 </div>
-                <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
-                  Track day-to-day expenditure to identify peak spending intervals.
-                </p>
-                <SpendingTrendsChart
-                  data={summary?.dailySpendingTrend || []}
-                  currency={user?.currency || 'USD'}
-                />
+
+                <div className="glass-card rounded-2xl p-5 border border-slate-200/80 dark:border-white/10 shadow-sm relative overflow-hidden">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Daily Average Spend</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30">Pacing</span>
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tabular-nums font-mono-nums mt-2">
+                    {formatCurrency(summary?.averageDailySpend || 0, user?.currency || 'USD')}
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Estimated across active calendar days
+                  </p>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 border border-slate-200/80 dark:border-white/10 shadow-sm relative overflow-hidden">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Payment Channels</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-violet-50 dark:bg-violet-500/15 text-violet-600 dark:text-violet-400 border border-violet-200 dark:border-violet-500/30">Instruments</span>
+                  </div>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tabular-nums font-mono-nums mt-2">
+                    {paymentMethodData.length} Channels
+                  </p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    {paymentMethodData[0]?.method ? `Top instrument: ${paymentMethodData[0].method}` : 'No payment data logged'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Daily Timeline Trend */}
+              <div className="glass-card rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-white/10 shadow-sm space-y-4 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="flex items-center justify-between relative z-10">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                      <TrendingUp className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
+                        Daily Spending Curve (Current Month)
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        Track day-to-day expenditure to identify peak spending intervals and spikes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="relative z-10 pt-2">
+                  <SpendingTrendsChart
+                    data={summary?.dailySpendingTrend || []}
+                    currency={user?.currency || 'USD'}
+                  />
+                </div>
               </div>
 
               {/* 2-Column Grid: Category Breakdown and Payment Methods */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Category Donut */}
-                <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
-                  <div className="flex items-center gap-2">
-                    <PieChart className="w-4 h-4 text-[#5145E5] dark:text-[#A5A0FF]" />
-                    <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
-                      Category Distribution
-                    </h3>
+                <div className="glass-card rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-white/10 shadow-sm space-y-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                      <PieChart className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
+                        Category Distribution
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        Proportional breakdown across all recorded spending types.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
-                    Proportional breakdown across all recorded spending types.
-                  </p>
                   <CategoryDonutChart
                     data={summary?.spendingByCategory || []}
                     currency={user?.currency || 'USD'}
@@ -154,19 +213,23 @@ export const AnalyticsPage: React.FC = () => {
                 </div>
 
                 {/* Payment Method Distribution */}
-                <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
-                  <div className="flex items-center gap-2">
-                    <CreditCard className="w-4 h-4 text-[#5145E5] dark:text-[#A5A0FF]" />
-                    <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
-                      Spending by Payment Instrument
-                    </h3>
+                <div className="glass-card rounded-2xl p-6 sm:p-7 border border-slate-200/80 dark:border-white/10 shadow-sm space-y-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                      <CreditCard className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
+                        Spending by Payment Instrument
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        Compare volume across UPI, Credit Card, Debit Card, Net Banking, and Cash.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
-                    Compare volume across UPI, Credit Card, Debit Card, and Cash.
-                  </p>
 
                   {paymentMethodData.length === 0 ? (
-                    <div className="h-56 flex items-center justify-center text-xs text-[#64748B] dark:text-[#A3AEC7] border border-dashed border-[#E7EAF2] dark:border-[#26334D] rounded-xl bg-[#F7F8FC]/50 dark:bg-[#17223A]/30">
+                    <div className="h-56 flex items-center justify-center text-xs text-slate-400 dark:text-slate-500 border border-dashed border-slate-200 dark:border-white/10 rounded-xl bg-slate-50/50 dark:bg-white/[0.02]">
                       No payment method data recorded yet.
                     </div>
                   ) : (
@@ -176,7 +239,7 @@ export const AnalyticsPage: React.FC = () => {
                           data={paymentMethodData}
                           margin={{ top: 10, right: 10, left: -10, bottom: 20 }}
                         >
-                          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E7EAF2" opacity={0.6} />
+                          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-slate-200 dark:text-slate-800" opacity={0.6} />
                           <XAxis
                             dataKey="method"
                             tickLine={false}
@@ -192,12 +255,20 @@ export const AnalyticsPage: React.FC = () => {
                             tick={{ fontSize: 10, fill: '#64748B' }}
                           />
                           <Tooltip
+                            contentStyle={{
+                              backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                              borderRadius: '12px',
+                              border: '1px solid rgba(255, 255, 255, 0.1)',
+                              color: '#fff',
+                              fontSize: '12px',
+                              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
+                            }}
                             formatter={(value: any) => [
                               formatCurrency(value, user?.currency || 'USD'),
                               'Amount',
                             ]}
                           />
-                          <Bar dataKey="amount" fill="#6366F1" radius={[4, 4, 0, 0]} />
+                          <Bar dataKey="amount" fill="#6366F1" radius={[6, 6, 0, 0]} />
                         </BarChart>
                       </ResponsiveContainer>
                     </div>

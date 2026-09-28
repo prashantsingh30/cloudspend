@@ -46,62 +46,62 @@ export const ExpenseTable: React.FC<ExpenseTableProps> = ({
   }
 
   return (
-    <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl overflow-hidden shadow-xs transition-colors">
+    <div className="glass-card rounded-2xl overflow-hidden shadow-xs border border-slate-200/90 dark:border-slate-800/90 transition-colors">
       {/* Desktop Table View */}
       <div className="hidden md:block overflow-x-auto">
-        <table className="w-full text-left text-xs text-[#151A2D] dark:text-[#F4F6FF]">
-          <thead className="bg-[#F7F8FC] dark:bg-[#17223A] border-b border-[#E7EAF2] dark:border-[#26334D] text-[11px] font-semibold text-[#64748B] dark:text-[#A3AEC7] uppercase tracking-wider">
+        <table className="w-full text-left text-xs text-slate-900 dark:text-slate-100">
+          <thead className="bg-slate-50/90 dark:bg-slate-900/80 border-b border-slate-200/80 dark:border-slate-800/80 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
             <tr>
-              <th scope="col" className="px-5 py-3">Date</th>
-              <th scope="col" className="px-5 py-3">Description</th>
-              <th scope="col" className="px-5 py-3">Category</th>
-              <th scope="col" className="px-5 py-3">Payment</th>
-              <th scope="col" className="px-5 py-3 text-right">Amount</th>
-              <th scope="col" className="px-5 py-3 text-right">Actions</th>
+              <th scope="col" className="px-5 py-3.5">Date</th>
+              <th scope="col" className="px-5 py-3.5">Description</th>
+              <th scope="col" className="px-5 py-3.5">Category</th>
+              <th scope="col" className="px-5 py-3.5">Payment</th>
+              <th scope="col" className="px-5 py-3.5 text-right">Amount</th>
+              <th scope="col" className="px-5 py-3.5 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#E7EAF2]/80 dark:divide-[#26334D]/80">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
             {expenses.map((expense) => {
               const Icon = getCategoryIcon(expense.category);
-              const catColor = CATEGORY_COLORS[expense.category] || '#5145E5';
+              const catColor = CATEGORY_COLORS[expense.category] || '#6366F1';
 
               return (
                 <tr
                   key={expense.id}
-                  className="hover:bg-[#F1F4F9]/60 dark:hover:bg-[#17223A]/50 transition-colors group"
+                  className="hover:bg-indigo-50/30 dark:hover:bg-indigo-950/20 transition-all duration-150 group"
                 >
-                  <td className="px-5 py-3.5 whitespace-nowrap text-[#64748B] dark:text-[#A3AEC7] font-mono text-[11px]">
+                  <td className="px-5 py-3.5 whitespace-nowrap text-slate-500 dark:text-slate-400 font-mono text-[11px]">
                     {formatDate(expense.date)}
                   </td>
                   <td className="px-5 py-3.5 font-medium max-w-xs">
-                    <p className="truncate text-[#151A2D] dark:text-[#F4F6FF]">{expense.description}</p>
+                    <p className="truncate text-slate-900 dark:text-white font-semibold">{expense.description}</p>
                     {expense.notes && (
-                      <p className="text-[11px] text-[#64748B] dark:text-[#A3AEC7] truncate mt-0.5">
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
                         {expense.notes}
                       </p>
                     )}
                   </td>
                   <td className="px-5 py-3.5 whitespace-nowrap">
-                    <div className="flex items-center gap-2">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border" style={{ borderColor: `${catColor}30`, backgroundColor: `${catColor}12`, color: catColor }}>
                       <span
-                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
                         style={{ backgroundColor: catColor }}
                       />
-                      <span className="font-medium">{expense.category}</span>
+                      <span>{expense.category}</span>
                     </div>
                   </td>
-                  <td className="px-5 py-3.5 whitespace-nowrap text-[#64748B] dark:text-[#A3AEC7]">
+                  <td className="px-5 py-3.5 whitespace-nowrap text-slate-500 dark:text-slate-400 font-mono text-[11px]">
                     {expense.paymentMethod}
                   </td>
-                  <td className="px-5 py-3.5 whitespace-nowrap text-right font-bold tabular-nums font-mono-nums text-[#151A2D] dark:text-[#F4F6FF]">
-                    {formatCurrency(expense.amount, currency)}
+                  <td className="px-5 py-3.5 whitespace-nowrap text-right font-extrabold tabular-nums font-mono-nums text-slate-900 dark:text-white">
+                    -{formatCurrency(expense.amount, currency)}
                   </td>
                   <td className="px-5 py-3.5 whitespace-nowrap text-right">
                     <div className="flex items-center justify-end gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
                       <button
                         type="button"
                         onClick={() => onEdit(expense)}
-                        className="p-1.5 rounded-lg text-[#64748B] hover:text-[#5145E5] dark:text-[#A3AEC7] dark:hover:text-[#A5A0FF] hover:bg-[#F1F4F9] dark:hover:bg-[#17223A] transition-colors"
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                         title="Edit entry"
                         aria-label="Edit entry"
                       >

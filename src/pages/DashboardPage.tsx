@@ -314,13 +314,13 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Budget Progress Card */}
-          <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs">
-            <div className="flex items-center justify-between mb-3">
+          <div className="glass-card rounded-2xl p-5 sm:p-6 shadow-xs">
+            <div className="flex items-center justify-between mb-3.5">
               <div>
-                <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
+                <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
                   Monthly Budget Pacing
                 </h3>
-                <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Real-time consumption against your monthly spending ceiling
                 </p>
               </div>
@@ -337,12 +337,12 @@ export const DashboardPage: React.FC = () => {
           {/* Charts 2-Column Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Spending Trends Area Chart */}
-            <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+            <div className="glass-card rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
               <div>
-                <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
+                <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
                   Daily Spending Velocity
                 </h3>
-                <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Day-by-day transaction pattern for this month
                 </p>
               </div>
@@ -353,12 +353,12 @@ export const DashboardPage: React.FC = () => {
             </div>
 
             {/* Category Donut Chart */}
-            <div className="bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+            <div className="glass-card rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
               <div>
-                <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
+                <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
                   Category Allocation
                 </h3>
-                <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Distribution across expense types
                 </p>
               </div>
@@ -372,10 +372,10 @@ export const DashboardPage: React.FC = () => {
           {/* Bottom Row: Recent Transactions & Rule-Based Insights */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Recent Transactions List (2 Cols on lg) */}
-            <div className="lg:col-span-2 bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+            <div className="lg:col-span-2 glass-card rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
+                  <h3 className="text-sm font-heading font-bold text-slate-900 dark:text-white">
                     Recent Transactions
                   </h3>
                   <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">

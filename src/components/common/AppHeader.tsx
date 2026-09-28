@@ -24,33 +24,33 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   const currencySymbol = CURRENCY_SYMBOLS[user?.currency || 'USD'] || '$';
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white/90 dark:bg-[#111A2E]/90 backdrop-blur-md border-b border-[#E7EAF2] dark:border-[#26334D] px-4 sm:px-6 flex items-center justify-between transition-colors duration-200">
+    <header className="sticky top-0 z-30 h-16 bg-white/85 dark:bg-[#070B14]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 px-4 sm:px-6 flex items-center justify-between transition-colors duration-200">
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={onOpenSidebar}
-          className="lg:hidden p-2 rounded-lg text-[#64748B] hover:text-[#151A2D] hover:bg-[#F1F4F9] dark:text-[#A3AEC7] dark:hover:text-white dark:hover:bg-[#17223A] transition-colors"
+          className="lg:hidden p-2 rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800 transition-colors"
           aria-label="Open sidebar"
         >
           <Menu className="w-5 h-5" />
         </button>
 
         <div>
-          <h1 className="text-base sm:text-lg font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF] tracking-tight">
-            {title}
+          <h1 className="text-base sm:text-lg font-heading font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+            <span>{title}</span>
           </h1>
           {subtitle && (
-            <p className="hidden sm:block text-xs text-[#64748B] dark:text-[#A3AEC7]">
+            <p className="hidden sm:block text-xs text-slate-500 dark:text-slate-400">
               {subtitle}
             </p>
           )}
         </div>
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-2 sm:gap-2.5">
         {/* Currency Indicator */}
-        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F7F8FC] dark:bg-[#17223A] border border-[#E7EAF2] dark:border-[#26334D] text-[#151A2D] dark:text-[#F4F6FF] text-xs font-mono font-medium">
-          <Coins className="w-3.5 h-3.5 text-[#5145E5] dark:text-[#A5A0FF]" />
+        <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 text-slate-800 dark:text-slate-200 text-xs font-mono font-medium shadow-2xs">
+          <Coins className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
           <span>{user?.currency || 'USD'} ({currencySymbol})</span>
         </div>
 
@@ -58,11 +58,11 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         <button
           type="button"
           onClick={toggleTheme}
-          className="p-2 rounded-lg text-[#64748B] hover:text-[#151A2D] dark:text-[#A3AEC7] dark:hover:text-white hover:bg-[#F1F4F9] dark:hover:bg-[#17223A] transition-colors border border-transparent hover:border-[#E7EAF2] dark:hover:border-[#26334D]"
+          className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
           aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         >
-          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400 transition-transform duration-300 hover:rotate-45" /> : <Moon className="w-4 h-4 text-indigo-600 transition-transform duration-300 hover:-rotate-12" />}
         </button>
 
         {/* Quick PDF Report Button */}
@@ -70,10 +70,10 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           <button
             type="button"
             onClick={onOpenPdfReport}
-            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#151A2D] dark:text-[#F4F6FF] bg-white dark:bg-[#17223A] border border-[#E7EAF2] dark:border-[#26334D] rounded-lg hover:bg-[#F1F4F9] dark:hover:bg-[#26334D] transition-colors shadow-xs"
+            className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-indigo-500/40 transition-all shadow-2xs group"
           >
-            <Download className="w-3.5 h-3.5 text-[#64748B] dark:text-[#A3AEC7]" />
-            <span>PDF Report</span>
+            <Download className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors" />
+            <span>PDF Export</span>
           </button>
         )}
 
@@ -82,7 +82,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           <button
             type="button"
             onClick={onOpenAddExpense}
-            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 text-xs font-semibold text-white bg-[#5145E5] hover:bg-[#4338CA] rounded-lg shadow-xs transition-all whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-600 rounded-xl shadow-[0_4px_14px_rgba(99,102,241,0.35)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all whitespace-nowrap"
           >
             <Plus className="w-4 h-4" />
             <span>Add Expense</span>

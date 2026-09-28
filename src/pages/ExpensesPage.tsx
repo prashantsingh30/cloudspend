@@ -149,10 +149,10 @@ export const ExpensesPage: React.FC = () => {
           {/* Action buttons bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <h2 className="text-base font-heading font-bold text-[#151A2D] dark:text-[#F4F6FF]">
+              <h2 className="text-base font-heading font-bold text-slate-900 dark:text-white">
                 All Transactions
               </h2>
-              <p className="text-xs text-[#64748B] dark:text-[#A3AEC7]">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Detailed record of all debits and categorized outflows
               </p>
             </div>
@@ -161,17 +161,17 @@ export const ExpensesPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleExportCsv}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#151A2D] dark:text-[#F4F6FF] bg-white dark:bg-[#111A2E] border border-[#E7EAF2] dark:border-[#26334D] rounded-xl hover:bg-[#F1F4F9] dark:hover:bg-[#17223A] transition-colors shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 glass-card hover:bg-slate-100/80 dark:hover:bg-white/10 border border-slate-200/80 dark:border-white/10 rounded-xl transition-all shadow-xs active:scale-[0.98]"
                 title="Download CSV table"
               >
-                <Download className="w-3.5 h-3.5 text-[#64748B] dark:text-[#A3AEC7]" />
+                <Download className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
                 <span>Export CSV</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setIsPdfModalOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#5145E5] dark:text-[#A5A0FF] bg-[#5145E5]/10 dark:bg-[#5145E5]/20 border border-[#5145E5]/20 rounded-xl hover:bg-[#5145E5]/20 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200/80 dark:border-indigo-500/30 rounded-xl hover:bg-indigo-100/70 dark:hover:bg-indigo-500/25 transition-all shadow-xs active:scale-[0.98]"
               >
                 <FileDown className="w-3.5 h-3.5" />
                 <span>PDF Statement</span>
@@ -183,7 +183,7 @@ export const ExpensesPage: React.FC = () => {
                   setEditingExpense(null);
                   setIsExpenseModalOpen(true);
                 }}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-[#5145E5] hover:bg-[#4338CA] rounded-xl shadow-xs transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 rounded-xl shadow-md hover:shadow-indigo-500/25 transition-all active:scale-[0.98]"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Add Expense</span>

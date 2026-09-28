@@ -90,35 +90,37 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
   }
 
   return (
-    <div className="divide-y divide-[#E7EAF2]/80 dark:divide-[#26334D]/80">
+    <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
       {expenses.slice(0, 5).map((expense) => {
         const IconComponent = getCategoryIcon(expense.category);
-        const catColor = CATEGORY_COLORS[expense.category] || '#5145E5';
+        const catColor = CATEGORY_COLORS[expense.category] || '#6366F1';
 
         return (
           <div
             key={expense.id}
-            className="py-3 sm:py-3.5 flex items-center justify-between gap-3 group hover:bg-[#F1F4F9]/60 dark:hover:bg-[#17223A]/50 px-2 rounded-xl transition-colors"
+            className="py-3 sm:py-3.5 flex items-center justify-between gap-3 group hover:bg-slate-50/80 dark:hover:bg-slate-800/40 px-3 rounded-2xl transition-all duration-200"
           >
             {/* Left: Icon & Description */}
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-3.5 min-w-0">
               <div
-                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-2xs"
+                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-2xs border border-white/20 dark:border-white/5 transition-transform duration-200 group-hover:scale-105"
                 style={{ backgroundColor: `${catColor}15`, color: catColor }}
               >
                 <IconComponent className="w-4 h-4" />
               </div>
 
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-[#151A2D] dark:text-[#F4F6FF] truncate">
+                <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
                   {expense.description}
                 </p>
-                <div className="flex items-center gap-2 text-[11px] text-[#64748B] dark:text-[#A3AEC7] mt-0.5">
-                  <span>{formatDate(expense.date)}</span>
-                  <span aria-hidden="true">·</span>
-                  <span className="truncate">{expense.category}</span>
-                  <span aria-hidden="true">·</span>
-                  <span className="hidden sm:inline text-[#64748B]/70 dark:text-[#A3AEC7]/70 font-mono text-[10px]">
+                <div className="flex items-center gap-2 text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                  <span className="font-mono text-[10px]">{formatDate(expense.date)}</span>
+                  <span className="opacity-40" aria-hidden="true">·</span>
+                  <span className="truncate px-2 py-0.2 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium text-[10px]">
+                    {expense.category}
+                  </span>
+                  <span className="opacity-40 hidden sm:inline" aria-hidden="true">·</span>
+                  <span className="hidden sm:inline font-mono text-[10px] text-slate-400 dark:text-slate-500">
                     {expense.paymentMethod}
                   </span>
                 </div>
@@ -126,8 +128,8 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
             </div>
 
             {/* Right: Amount & Actions */}
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="text-xs sm:text-sm font-bold text-[#151A2D] dark:text-[#F4F6FF] tabular-nums font-mono-nums">
+            <div className="flex items-center gap-3.5 shrink-0">
+              <span className="text-xs sm:text-sm font-extrabold text-slate-900 dark:text-white tabular-nums font-mono-nums">
                 -{formatCurrency(expense.amount, currency)}
               </span>
 
@@ -135,7 +137,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                 <button
                   type="button"
                   onClick={() => onEdit(expense)}
-                  className="p-1.5 rounded-lg text-[#64748B] hover:text-[#5145E5] dark:text-[#A3AEC7] dark:hover:text-[#A5A0FF] hover:bg-[#F1F4F9] dark:hover:bg-[#17223A] transition-colors"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                   title="Edit expense"
                   aria-label="Edit expense"
                 >
@@ -144,7 +146,7 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
                 <button
                   type="button"
                   onClick={() => onDelete(expense.id, expense.description)}
-                  className="p-1.5 rounded-lg text-[#64748B] hover:text-rose-600 dark:text-[#A3AEC7] dark:hover:text-rose-400 hover:bg-[#F1F4F9] dark:hover:bg-[#17223A] transition-colors"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
                   title="Delete expense"
                   aria-label="Delete expense"
                 >
@@ -159,10 +161,10 @@ export const RecentTransactions: React.FC<RecentTransactionsProps> = ({
       <div className="pt-3 text-center">
         <Link
           to="/expenses"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5145E5] dark:text-[#A5A0FF] hover:text-[#4338CA] transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors group"
         >
-          <span>View all expenses</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <span>View all itemized transactions</span>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>
     </div>
