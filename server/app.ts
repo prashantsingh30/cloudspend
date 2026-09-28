@@ -44,6 +44,14 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+// Normalize URL path for serverless environments (handles both /api/path and rewritten /path)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (!req.url.startsWith('/api')) {
+    req.url = `/api${req.url.startsWith('/') ? '' : '/'}${req.url}`;
+  }
+  next();
+});
+
 // CORS configuration - allow configured CLIENT_ORIGIN or incoming origin
 app.use((req: Request, res: Response, next: NextFunction) => {
   const origin = req.headers.origin;
