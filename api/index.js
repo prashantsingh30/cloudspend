@@ -1975,6 +1975,12 @@ function authMiddleware(req, res, next) {
 var app = express();
 app.use(express.json());
 app.use((req, res, next) => {
+  if (!req.url.startsWith("/api")) {
+    req.url = `/api${req.url.startsWith("/") ? "" : "/"}${req.url}`;
+  }
+  next();
+});
+app.use((req, res, next) => {
   const origin = req.headers.origin;
   const allowedOrigin = process.env.CLIENT_ORIGIN || "*";
   res.header("Access-Control-Allow-Origin", origin || allowedOrigin);
